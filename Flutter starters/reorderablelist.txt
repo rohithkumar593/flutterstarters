@@ -1,0 +1,94 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+void main()=>runApp(
+  MaterialApp(
+    home: Home(),
+  )
+);
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  bool play;
+  @override
+  void initState(){
+
+    super.initState();
+    play=false;
+     _controller=AnimationController(
+    vsync:this, 
+    duration: Duration(
+      milliseconds: 700
+    ),
+    reverseDuration: Duration(
+       milliseconds: 500
+    )
+  );
+  }
+
+  List<String> colors=["hi","hlo","how","are","you","emcheylenu","ninnu","bagupadav"];
+  int x=0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Rohith Kumar"
+        ),
+        centerTitle: true,
+
+      ),
+      body:ReorderableListView(
+         onReorder: (oldIndex,newIndex){
+            setState(() {
+              _updateItem(
+                  oldIndex,newIndex
+              );
+            });
+        },
+        children:List<Widget>.generate(
+          colors.length
+          , (int index){
+              return CreateCard(
+               story: colors[index],
+               key: Key("$index"),
+              );
+          })
+       )
+      
+    );
+  }
+  _updateItem(old,newind){
+    final x=colors[old];
+    final y=colors[newind];
+    colors[old]=y;
+    colors[newind]=x;
+  }
+
+  
+}
+  class CreateCard extends StatelessWidget {
+    final String story;
+    final Key key;
+    CreateCard({this.story,this.key});
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+        height: 100,
+        child: Card( 
+         child: ListTile(
+            title: Center(
+              child: Text(story)
+              ),
+          )
+          
+        ),
+      );
+    }
+  }
+

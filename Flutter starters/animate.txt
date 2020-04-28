@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+void main()
+{
+  runApp(RohithApp());
+}
+class RohithApp extends StatefulWidget {
+  @override
+  _RohithAppState createState() => _RohithAppState();
+}
+
+class _RohithAppState extends State<RohithApp> {
+  double _width=50.0;
+  double _height=50.0;
+  Color _color=Colors.blueGrey;
+  BorderRadiusGeometry _rad = BorderRadius.circular(8);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home:Scaffold(
+        appBar: AppBar(title: Text("Rohith Kumar"),),
+        body:Center(
+          child:
+            AnimatedContainer(
+              width:_width,
+              height: _height,
+              curve: Curves.fastLinearToSlowEaseIn,
+              duration: Duration(seconds: 2),
+              decoration: BoxDecoration(
+                    color:_color,
+                    borderRadius: _rad,
+              ),
+            )
+
+        ),
+        floatingActionButton: FloatingActionButton(child: Icon(Icons.play_arrow),
+          onPressed: (){
+              setState(() {
+                _color=Colors.black26;
+                 _width=100.0;
+
+              });
+          },
+        ),
+      )
+
+    );
+  }
+}

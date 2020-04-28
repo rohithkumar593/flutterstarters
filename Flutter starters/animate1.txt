@@ -1,0 +1,62 @@
+import "package:flutter/material.dart";
+
+void main()
+{
+  runApp(RohithApp());
+}
+class RohithApp extends StatelessWidget {
+  Widget get middlearea=>
+      Container(
+        width: 100,
+        color: Colors.blue,
+      );
+  Widget get middleareas=>
+      Expanded(
+        child: Container(
+            color:Colors.black87
+        ),
+
+      );
+
+
+  Widget get toparea=> Container(
+      height: 100,
+      width: double.infinity,
+      color:Colors.green
+  );
+  Widget get bottomarea=>Row(
+
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children:List<Widget>.generate(4, (ind)=>Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 50),
+      width: 60,
+      height: 40,
+      color: Colors.grey,
+      
+    )
+    )
+
+
+
+
+  );
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: <Widget>[
+           toparea,
+            Expanded(child: Row(
+              children: <Widget>[
+                middlearea,
+                middleareas
+              ],
+            )),
+            bottomarea
+          ],
+        )
+      ),
+    );
+  }
+}
